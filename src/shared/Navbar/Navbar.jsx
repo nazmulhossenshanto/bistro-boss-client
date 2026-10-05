@@ -1,9 +1,11 @@
+import { Link } from "react-router";
+
  
 const Navbar = () => {
   const navOptions = (
     <>
       <li>
-        <a className="text-white">HOME</a>
+        <Link to={"/"} className="text-white">HOME</Link>
       </li>
 
       <li>
@@ -15,7 +17,7 @@ const Navbar = () => {
       </li>
 
       <li>
-        <a className="text-white">OUR MENU</a>
+        <Link to={"/menu"} className="text-white">OUR MENU</Link>
       </li>
 
       <li>
