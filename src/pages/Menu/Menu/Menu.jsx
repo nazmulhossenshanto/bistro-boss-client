@@ -28,20 +28,20 @@ const Menu = () => {
         <Cover image={menuImg} title={"Our menu"}></Cover>
         {/* Today's offer */}
         <SectionTitle subHeading={"Don't miss"} heading={"Today's Offer"}></SectionTitle>
-       <div className="space-y-10">
-        <MenuCategory categoryMenu={offered}></MenuCategory>
+       <div className="space-y-10 mb-10">
+        <MenuCategory categoryMenu={offered} route="salad"></MenuCategory>
         {/* Dessert section */}
         <Cover image={dessertImg} title={"DESSERT"}></Cover>
-        <MenuCategory categoryMenu={dessert}></MenuCategory>
+        <MenuCategory categoryMenu={dessert} route="dessert"></MenuCategory>
         {/* Pizza section */}
         <Cover image={pizzaImg} title={"PIZZA"}></Cover>
-        <MenuCategory categoryMenu={pizza}></MenuCategory>
+        <MenuCategory categoryMenu={pizza} route="pizza"></MenuCategory>
         {/* Salad section */}
         <Cover image={saladImg} title={"SALAD"}></Cover>
-        <MenuCategory categoryMenu={salad}></MenuCategory>
+        <MenuCategory categoryMenu={salad} route="salad"></MenuCategory>
         {/* Soup section */}
         <Cover image={soupImg} title={"SOUP"}></Cover>
-        <MenuCategory categoryMenu={soup}></MenuCategory>
+        <MenuCategory categoryMenu={soup} route="soup"></MenuCategory>
         </div>
         
         </div>
