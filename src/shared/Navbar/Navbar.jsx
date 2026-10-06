@@ -21,7 +21,7 @@ const Navbar = () => {
       </li>
 
       <li>
-        <a className="text-white">OUR SHOP</a>
+        <Link to='/order' className="text-white">OUR SHOP</Link>
       </li>
     </>
   );
