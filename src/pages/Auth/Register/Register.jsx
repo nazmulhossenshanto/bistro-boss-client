@@ -1,6 +1,6 @@
 import useAuth from "../../../hooks/useAuth";
 import Swal from 'sweetalert2'
- 
+ import authImg from '../../../assets/others/authentication2.png'
 
 const Register = () => {
   const {createUser} = useAuth(); 
@@ -35,10 +35,11 @@ const Register = () => {
         <div className="hero-content flex-col md:flex-row-reverse items-center justify-center">
           {/* Text content */}
           <div className="text-center w-1/2 lg:text-left">
-            <h1 className="text-5xl font-bold">Register now!</h1>
+            <img src={authImg} alt="" />
           </div>
           {/* Register form */}
           <div className="card bg-base-100 w-1/2 max-w-sm  shadow-2xl">
+          <h1 className="text-5xl font-bold text-center my-3">Register now!</h1>
             <div className="card-body">
               <form onSubmit={handleRegister} className="fieldset">
                 <label className="label">Email</label>
