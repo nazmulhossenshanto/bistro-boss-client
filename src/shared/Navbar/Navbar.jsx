@@ -78,10 +78,13 @@ const Navbar = () => {
       </div>
 
       {/* Navbar End */}
-      <div className="navbar-end">
-        <a className="btn bg-white text-black hover:bg-gray-200">
+      <div className="navbar-end gap-5">
+        <button className="btn bg-white text-black hover:bg-gray-200">
           Button
-        </a>
+        </button>
+         
+        <Link to='/auth/login' className="btn bg-white text-black hover:bg-gray-200">Login</Link>
+      
       </div>
     </div>
   );

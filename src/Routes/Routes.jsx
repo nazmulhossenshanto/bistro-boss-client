@@ -4,6 +4,9 @@ import Home from "../pages/Home/Home";
 import Menu from "../pages/Menu/Menu/Menu";
 import Order from "../pages/Order/order/Order";
 import Contact from "../pages/Contact/Contact/Contact";
+import AuthLayout from "../Layouts/AuthLayout";
+import Login from "../pages/Auth/Login/Login";
+import Register from "../pages/Auth/Register/Register";
 
 export const router = createBrowserRouter([
   {
@@ -27,5 +30,20 @@ export const router = createBrowserRouter([
         element: <Contact></Contact>
       }
     ],
+
   },
+  {
+    path: 'auth',
+    Component: AuthLayout,
+    children: [
+      {
+        path: 'login',
+        element: <Login></Login>
+      },
+      {
+        path: 'register',
+        element: <Register></Register>
+      }
+    ]
+  }
 ]);
