@@ -1,6 +1,7 @@
-import { Link } from "react-router";
+import { Link, Navigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import { IoCartOutline } from "react-icons/io5";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logOutUser } = useAuth();
@@ -49,15 +50,24 @@ const Navbar = () => {
     </>
   );
 
-  const handleLogOut = ()=>{
-logOutUser()
-.then(()=>{
-  console.log('user log out');
-})
-.catch(error=>{
-  console.log(error);
-})
-  }
+  const handleLogOut = async () => {
+    try {
+      await logOutUser();
+      Swal.fire({
+        title: "Successful!",
+        text: "User logged out successfully!",
+        icon: "success",
+      });
+      <Navigate/> 
+    } catch (error) {
+      console.error("Logout error:", error);
+      Swal.fire({
+        title: "Logout Failed!",
+        text: error.message,
+        icon: "error",
+      });
+    }
+  };
 
   return (
     <div className="navbar fixed z-10 mx-auto max-w-7xl bg-black/40 text-white shadow-sm">
@@ -107,7 +117,10 @@ logOutUser()
       {/* Navbar End */}
       <div className="navbar-end gap-5">
         {user ? (
-          <button className="btn bg-white text-black hover:bg-gray-200">
+          <button
+            onClick={handleLogOut}
+            className="btn bg-white text-black hover:bg-gray-200"
+          >
             Log Out
           </button>
         ) : (

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
@@ -11,6 +11,10 @@ import authImg from '../../../assets/others/authentication1.png'
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 const Login = () => {
+  const location = useLocation();
+  console.log(location);
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || '/';
   const {signInUser} = useAuth();
   const captchaRef = useRef(null);
   const [disabled, setDisbled] = useState(true)
@@ -26,7 +30,8 @@ const Login = () => {
           text: "User Sign In Successfull !",
           icon: "success"
         })
-      }
+      };
+      navigate(from, {replace: true})
     })
     .catch(error=>{
       console.log(error);
@@ -95,7 +100,7 @@ const Login = () => {
                 <button disabled={disabled} type="submit" className="btn btn-neutral mt-4 bg-secondary text-white disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed border-none">
                   Login
                 </button>
-                <p className="text-secondary text-center">New here? <Link to={"/auth/register"} className="font-semibold hover:link"> Create a New Account</Link> </p>
+                <p className="text-secondary text-center">New here? <Link  state={ {from : location.state?.from} } to={"/auth/register"} className="font-semibold hover:link"> Create a New Account</Link> </p>
               </form>
             </div>
           </div>
