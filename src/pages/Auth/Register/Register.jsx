@@ -1,6 +1,7 @@
 import useAuth from "../../../hooks/useAuth";
 import Swal from 'sweetalert2'
  import authImg from '../../../assets/others/authentication2.png'
+import { Link } from "react-router";
 
 const Register = () => {
   const {createUser} = useAuth(); 
@@ -39,7 +40,7 @@ const Register = () => {
           </div>
           {/* Register form */}
           <div className="card bg-base-100 w-1/2 max-w-sm  shadow-2xl">
-          <h1 className="text-5xl font-bold text-center my-3">Register now!</h1>
+          <h1 className="text-5xl font-bold text-center my-3">Sign Up</h1>
             <div className="card-body">
               <form onSubmit={handleRegister} className="fieldset">
                 <label className="label">Email</label>
@@ -56,9 +57,10 @@ const Register = () => {
                   className="input"
                   placeholder="Password"
                 /> 
-                <button   type="submit" className="btn btn-neutral mt-4">
-                  Register
+                <button   type="submit" className="btn btn-neutral text-white bg-secondary border-none mt-4">
+                  Sign Up
                 </button>
+                <p className="text-secondary text-center">Already registered? <Link to={"/auth/register"} className="font-semibold hover:link"> Go to login</Link> </p>
               </form>
             </div>
           </div>

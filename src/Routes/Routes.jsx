@@ -7,6 +7,7 @@ import Contact from "../pages/Contact/Contact/Contact";
 import AuthLayout from "../Layouts/AuthLayout";
 import Login from "../pages/Auth/Login/Login";
 import Register from "../pages/Auth/Register/Register";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/order/:category',
-        element: <Order></Order>
+        element: <PrivateRoute><Order></Order></PrivateRoute>
       },
       {
         path: '/contact',

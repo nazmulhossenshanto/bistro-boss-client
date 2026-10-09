@@ -1,15 +1,21 @@
 import { Link } from "react-router";
+import useAuth from "../../hooks/useAuth";
+import { IoCartOutline } from "react-icons/io5";
 
- 
 const Navbar = () => {
+  const { user, logOutUser } = useAuth();
   const navOptions = (
     <>
       <li>
-        <Link to={"/"} className="text-white">HOME</Link>
+        <Link to={"/"} className="text-white">
+          HOME
+        </Link>
       </li>
 
       <li>
-        <Link to="/contact" className="text-white">CONTACT US</Link>
+        <Link to="/contact" className="text-white">
+          CONTACT US
+        </Link>
       </li>
 
       <li>
@@ -17,21 +23,46 @@ const Navbar = () => {
       </li>
 
       <li>
-        <Link to={"/menu"} className="text-white">OUR MENU</Link>
+        <Link to={"/menu"} className="text-white">
+          OUR MENU
+        </Link>
       </li>
 
       <li>
-        <Link to='/order/salad' className="text-white">OUR SHOP</Link>
+        <Link to="/order/salad" className="text-white">
+          OUR SHOP
+        </Link>
+      </li>
+      <li>
+        <Link to="/" className="  ">
+          <button className="btn bg-none">
+            <IoCartOutline />{" "}
+            <div className="badge badge-sm badge-secondary">+0</div>
+          </button>
+        </Link>
+      </li>
+      <li>
+        <Link to="/" className="text-white">
+          {user?.email}
+        </Link>
       </li>
     </>
   );
 
+  const handleLogOut = ()=>{
+logOutUser()
+.then(()=>{
+  console.log('user log out');
+})
+.catch(error=>{
+  console.log(error);
+})
+  }
+
   return (
     <div className="navbar fixed z-10 mx-auto max-w-7xl bg-black/40 text-white shadow-sm">
-      
       {/* Navbar Start */}
       <div className="navbar-start">
-        
         {/* Mobile Menu */}
         <div className="dropdown">
           <div
@@ -65,31 +96,31 @@ const Navbar = () => {
         </div>
 
         {/* Logo */}
-        <a className="btn btn-ghost text-xl text-white">
-          BISTRO BOSS
-        </a>
+        <a className="btn btn-ghost text-xl text-white">BISTRO BOSS</a>
       </div>
 
       {/* Desktop Menu */}
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 text-white">
-          {navOptions}
-        </ul>
+        <ul className="menu menu-horizontal px-1 text-white">{navOptions}</ul>
       </div>
 
       {/* Navbar End */}
       <div className="navbar-end gap-5">
-        <button className="btn bg-white text-black hover:bg-gray-200">
-          Button
-        </button>
-         
-        <Link to='/auth/login' className="btn bg-white text-black hover:bg-gray-200">Login</Link>
-      
+        {user ? (
+          <button className="btn bg-white text-black hover:bg-gray-200">
+            Log Out
+          </button>
+        ) : (
+          <Link
+            to="/auth/login"
+            className="btn bg-white text-black hover:bg-gray-200"
+          >
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
 };
 
 export default Navbar;
- 
- 
