@@ -67,15 +67,14 @@ const Register = () => {
                   Sign Up
                 </button>
                 <p className="text-secondary text-center">
-                  Already have an account?{" "}
+                  Already have an account? 
                   <Link
                     to={"/auth/login"}
                     state={{ from: location.state?.from }}
                     className="font-semibold hover:link"
-                  >
-                    {" "}
+                  > 
                     Go to login
-                  </Link>{" "}
+                  </Link>
                 </p>
               </form>
             </div>

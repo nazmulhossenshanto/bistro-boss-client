@@ -2,9 +2,11 @@ import { Link, Navigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import { IoCartOutline } from "react-icons/io5";
 import Swal from "sweetalert2";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
   const { user, logOutUser } = useAuth();
+  const [cart] = useCart();
   const navOptions = (
     <>
       <li>
@@ -38,7 +40,7 @@ const Navbar = () => {
         <Link to="/" className="  ">
           <button className="btn bg-none">
             <IoCartOutline />{" "}
-            <div className="badge badge-sm badge-secondary">+0</div>
+            <div className="badge badge-sm badge-secondary">{cart.length}</div>
           </button>
         </Link>
       </li>
