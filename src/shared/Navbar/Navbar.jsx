@@ -37,7 +37,7 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link to="/" className="  ">
+        <Link to="/dashboard/cart" className="  ">
           <button className="btn bg-none">
             <IoCartOutline />{" "}
             <div className="badge badge-sm badge-secondary">{cart.length}</div>
