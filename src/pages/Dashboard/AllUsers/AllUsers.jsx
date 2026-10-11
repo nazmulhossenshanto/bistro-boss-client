@@ -14,8 +14,27 @@ const AllUsers = () => {
       return res.data;
     },
   });
-  const handleDeleteUser = (user) => {
-    console.log("user from all users : ", user);
+
+ const handleMakeAdmin = (user)=>{
+    axiosSecure.patch(`/users/admin/${user._id}`)
+    .then(res=>{
+        console.log(res.data);
+        if(res.data.modifiedCount > 0){
+            refetch();
+            Swal.fire({
+                
+              title: "Congratulations!",
+              text: "User added as admin",
+              icon: "success",
+            
+                
+            })
+        }
+    })
+
+ }
+
+  const handleDeleteUser = (user) => { 
 
     Swal.fire({
       title: "Are you sure?",
@@ -42,7 +61,7 @@ const AllUsers = () => {
 
   return (
     <div className="min-h-screen bg-base-300 p-4 md:p-8">
-      <SectionTitle heading="MANAGE ALL ITEMS" subHeading="Hurry Up!" />
+      <SectionTitle heading="MANAGE ALL USERS" subHeading="How many?" />
 
       {/* Cart table container */}
       <div className="mx-auto mt-10 w-full max-w-5xl rounded-lg bg-base-100 p-4 md:p-6 ">
@@ -74,13 +93,13 @@ const AllUsers = () => {
                   <td>${user?.email}</td>
 
                   <td>
-                    <button
+                    { user.role === 'admin' ? 'Admin' : <button onClick={()=>handleMakeAdmin(user)}
                       type="button"
                       aria-label={`Edit ${user.name}`}
                       className="rounded-lg bg-secondary p-2 text-white"
                     >
                       <FaUsers size={18} />
-                    </button>
+                    </button>}
                   </td>
 
                   <td>
@@ -91,7 +110,7 @@ const AllUsers = () => {
                       className="rounded-lg bg-red-700 p-2 text-white"
                     >
                       <RiDeleteBinLine size={18} />
-                    </button>
+                    </button> 
                   </td>
                 </tr>
               ))}

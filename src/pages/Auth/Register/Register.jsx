@@ -29,6 +29,7 @@ const Register = () => {
             title: "successfull!",
             text: "User Registered Successfully!",
             icon: "success",
+            timer: 1500
           });
           navigate(from, { replace: true });
             }
