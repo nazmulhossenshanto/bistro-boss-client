@@ -22,7 +22,7 @@ const Navbar = () => {
       </li>
 
       <li>
-        <a className="text-white">DASHBOARD</a>
+        <Link to="/dashboard" className="text-white">DASHBOARD</Link>
       </li>
 
       <li>

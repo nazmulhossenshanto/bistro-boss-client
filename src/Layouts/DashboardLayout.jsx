@@ -4,7 +4,11 @@ import { IoMdHome } from "react-icons/io";
 import { ImSpoonKnife } from "react-icons/im";
 import { FaBars, FaUsers, FaBook } from "react-icons/fa";
 import { HiShoppingBag } from "react-icons/hi";
-import { MdEmail } from "react-icons/md";
+import { MdEmail, MdOutlinePayment } from "react-icons/md";
+import { AiFillCalendar } from "react-icons/ai";
+import { BiSolidCommentDots } from "react-icons/bi";
+import { RiBookAiFill } from "react-icons/ri";
+
 
 const DashboardLayout = () => {
   const navClass = ({ isActive }) =>
@@ -12,18 +16,27 @@ const DashboardLayout = () => {
       isActive ? "!text-white font-bold" : ""
     }`;
 
+    const isAdmin = true;
+
+
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
       <div className="w-60 min-h-screen shrink-0 bg-secondary">
+        <div className="m-5 text-center">
+          <h1 className="uppercase font-bold text-3xl">Bistro Boss</h1>
+          <h1 className="uppercase text-xl">R e s t u a r e n t</h1>
+        </div>
         <ul className="menu w-full p-4 gap-1">
 
-          {/* Admin Home */}
+{
+  isAdmin ? <>
+    {/* Admin Home */}
           <li>
             <div className="flex items-center gap-2">
               <IoMdHome className="shrink-0 text-lg" />
               <NavLink
-                to="/dashboard/home"
+                to="/dashboard/adminHome"
                 className={navClass}
               >
                 ADMIN HOME
@@ -39,20 +52,20 @@ const DashboardLayout = () => {
                 to="/dashboard/add-item"
                 className={navClass}
               >
-                ADD ITEM
+                ADD ITEMS
               </NavLink>
             </div>
           </li>
 
-          {/* My Carts */}
+          {/* Manage Items */}
           <li>
             <div className="flex items-center gap-2">
               <FaBars className="shrink-0 text-lg" />
               <NavLink
-                to="/dashboard/cart"
+                to="/dashboard/manageItems"
                 className={navClass}
               >
-                MY CARTS
+                MANAGE ITEMS
               </NavLink>
             </div>
           </li>
@@ -75,13 +88,93 @@ const DashboardLayout = () => {
             <div className="flex items-center gap-2">
               <FaUsers className="shrink-0 text-lg" />
               <NavLink
-                to="/dashboard/users"
+                to="/dashboard/allUsers"
                 className={navClass}
               >
                 ALL USERS
               </NavLink>
             </div>
           </li>
+  </> : <>
+    {/* User Home */}
+          <li>
+            <div className="flex items-center gap-2">
+              <IoMdHome className="shrink-0 text-lg" />
+              <NavLink
+                to="/dashboard/userHome"
+                className={navClass}
+              >
+                USER HOME
+              </NavLink>
+            </div>
+          </li>
+
+          {/* Reservation */}
+          <li>
+            <div className="flex items-center gap-2">
+              <AiFillCalendar className="shrink-0 text-lg" />
+              <NavLink
+                to="/dashboard/reservation"
+                className={navClass}
+              >
+                RESERVATION
+              </NavLink>
+            </div>
+          </li>
+
+          {/* Payment History */}
+          <li>
+            <div className="flex items-center gap-2">
+              <MdOutlinePayment className="shrink-0 text-lg" />
+              <NavLink
+                to="/dashboard/paymentHistory"
+                className={navClass}
+              >
+                PAYMENT HISTORY
+              </NavLink>
+            </div>
+          </li>
+          {/* My Carts */}
+          <li>
+            <div className="flex items-center gap-2">
+              <FaBars className="shrink-0 text-lg" />
+              <NavLink
+                to="/dashboard/cart"
+                className={navClass}
+              >
+                MY CARTS
+              </NavLink>
+            </div>
+          </li>
+
+          {/* Add Review */}
+          <li>
+            <div className="flex items-center gap-2">
+              <BiSolidCommentDots className="shrink-0 text-lg" />
+              <NavLink
+                to="/dashboard/review"
+                className={navClass}
+              >
+                ADD REVIEW
+              </NavLink>
+            </div>
+          </li>
+
+          {/* My Bookings */}
+          <li>
+            <div className="flex items-center gap-2">
+              <RiBookAiFill className="shrink-0 text-lg"/>
+              <NavLink
+                to="/dashboard/myBookings"
+                className={navClass}
+              >
+                MY BOOKINGS
+              </NavLink>
+            </div>
+          </li>
+  </>
+}
+        
 
           {/* Divider */}
           <li className="my-2">

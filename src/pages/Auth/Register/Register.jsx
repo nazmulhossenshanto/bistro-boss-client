@@ -2,25 +2,38 @@ import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import authImg from "../../../assets/others/authentication2.png";
 import { Link, useLocation, useNavigate } from "react-router";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from || "/";
+  const from = location.state?.from?.pathname || "/";
   const { createUser } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const handleRegister = (e) => {
     e.preventDefault();
+    const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
     createUser(email, password)
       .then((result) => {
         if (result.user.uid) {
-          Swal.fire({
+          const userInfo = {
+            name: result.user.displayName || name,
+            email: result.user.email
+          };
+          axiosPublic.post('/users', userInfo)
+          .then(res=>{
+            if(res.data.insertedId){
+              Swal.fire({
             title: "successfull!",
             text: "User Registered Successfully!",
             icon: "success",
           });
           navigate(from, { replace: true });
+            }
+          })
+          
         }
       })
       .catch((error) => {
@@ -46,6 +59,16 @@ const Register = () => {
             <h1 className="text-5xl font-bold text-center my-3">Sign Up</h1>
             <div className="card-body">
               <form onSubmit={handleRegister} className="fieldset">
+               {/* Name field */}
+               <label className="label">Name</label>
+                <input
+                  name="name"
+                  type="name"
+                  className="input"
+                  placeholder="Name"
+                />
+               
+                {/* Email field */}
                 <label className="label">Email</label>
                 <input
                   name="email"
