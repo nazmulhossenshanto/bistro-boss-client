@@ -12,7 +12,7 @@ import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 const Login = () => {
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   const navigate = useNavigate();
   const from = location?.state?.from?.pathname || '/';
   const {signInUser} = useAuth();

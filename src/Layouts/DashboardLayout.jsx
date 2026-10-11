@@ -8,6 +8,7 @@ import { MdEmail, MdOutlinePayment } from "react-icons/md";
 import { AiFillCalendar } from "react-icons/ai";
 import { BiSolidCommentDots } from "react-icons/bi";
 import { RiBookAiFill } from "react-icons/ri";
+import useAdmin from "../hooks/useAdmin";
 
 
 const DashboardLayout = () => {
@@ -16,7 +17,7 @@ const DashboardLayout = () => {
       isActive ? "!text-white font-bold" : ""
     }`;
 
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
 
 
   return (
