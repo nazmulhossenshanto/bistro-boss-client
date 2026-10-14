@@ -13,7 +13,7 @@ const Cover = ({image, title}) => {
   className="hero h-175"
   
 >
-  <div className="hero-overlay "></div>
+  <div className="hero-overlay"></div>
   <div className="hero-content text-neutral-content text-center bg-black/40 p-20">
     <div className="max-w-md ">
       <h1 className="mb-5 text-5xl font-bold uppercase">{title}</h1>
@@ -30,4 +30,4 @@ const Cover = ({image, title}) => {
   )
 }
 
-export default Cover
+export default Cover;

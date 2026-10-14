@@ -50,7 +50,7 @@ const DashboardLayout = () => {
             <div className="flex items-center gap-2">
               <ImSpoonKnife className="shrink-0 text-lg" />
               <NavLink
-                to="/dashboard/add-item"
+                to="/dashboard/addItem"
                 className={navClass}
               >
                 ADD ITEMS
