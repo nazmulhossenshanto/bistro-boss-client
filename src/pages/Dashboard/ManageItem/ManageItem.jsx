@@ -21,6 +21,7 @@ const ManageItem = () => {
     );
   }
     const handleDeleteItem = async(id)=>{ 
+        
          Swal.fire({
               title: "Are you sure?",
               text: "You won't be able to revert this!",
@@ -31,8 +32,7 @@ const ManageItem = () => {
               confirmButtonText: "Yes, delete item!",
             }).then((result) => {
               if (result.isConfirmed) {
-                axiosSecure.delete(`/menu/${id}`).then((res) => {
-                    console.log('data from manage item', res.data);
+                axiosSecure.delete(`/menu/${id}`).then((res) => { 
                  refetch();
                   if (res.data.deletedCount > 0)
                     Swal.fire({
