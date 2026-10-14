@@ -3,13 +3,48 @@
 import { FiEdit } from "react-icons/fi";
 import SectionTitle from "../../../SectionTitle/SectionTitle" 
 import useMenu from "../../../hooks/useMenu";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import { Link } from "react-router";
 
  
 
 const ManageItem = () => {
     
-    const [allItems] = useMenu();;
-    console.log('menu from manage item :: ', allItems);
+    const [allItems, isMenuLoading, refetch] = useMenu();
+    const axiosSecure = useAxiosSecure();
+     if (isMenuLoading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
+    const handleDeleteItem = async(id)=>{ 
+         Swal.fire({
+              title: "Are you sure?",
+              text: "You won't be able to revert this!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Yes, delete item!",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                axiosSecure.delete(`/menu/${id}`).then((res) => {
+                    console.log('data from manage item', res.data);
+                 refetch();
+                  if (res.data.deletedCount > 0)
+                    Swal.fire({
+                      title: "Deleted!",
+                      text: "Your item has been deleted.",
+                      icon: "success",
+                    });
+                });
+              }
+            });
+
+    }
   return (
     <div className="min-h-screen bg-base-300 p-4 md:p-8">
       <SectionTitle heading="MANAGE ALL ITEMS" subHeading="Hurry Up" />
@@ -40,22 +75,22 @@ const ManageItem = () => {
                 <tr key={item._id}>
                   <th>{index + 1}</th>
 
-                  <td><img className="h-16 rounded-full w-16" src={item?.image} alt="" /></td>
+                  <td><img className="h-12 rounded-full w-12" src={item?.image} alt="" /></td>
 
                   <td>${item?.name}</td>
                   <td>${item?.price}</td>
 
                   <td>
-                  <button   
-                      className="rounded-lg bg-secondary p-2 text-white"
+                  <Link to={`/dashboard/updateItem/${item._id}` }  
+                      className="rounded-lg btn bg-secondary p-2 text-white"
                     >
                       <FiEdit size={18} />
-                    </button>
+                    </Link>
                   </td>
 
                   <td>
                     <button
-                    
+                    onClick={()=>handleDeleteItem(item._id)}
                       type="button"
                       aria-label={`Delete ${item.name}`}
                       className="rounded-lg bg-red-700 p-2 text-white"
