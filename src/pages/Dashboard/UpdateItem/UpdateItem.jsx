@@ -36,7 +36,7 @@ const UpdateItem = () => {
         });
       }
     } catch (error) {
-      console.error("Add item error:", error.response?.data || error.message);
+      console.error("Update item error:", error.response?.data || error.message);
 
       Swal.fire({
         icon: "error",

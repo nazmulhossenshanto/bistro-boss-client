@@ -115,7 +115,7 @@ const DashboardLayout = () => {
             <div className="flex items-center gap-2">
               <AiFillCalendar className="shrink-0 text-lg" />
               <NavLink
-                to="/dashboard/reservation"
+                to="/dashboard/payment"
                 className={navClass}
               >
                 RESERVATION

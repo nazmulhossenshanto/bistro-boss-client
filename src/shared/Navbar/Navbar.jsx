@@ -60,7 +60,7 @@ const Navbar = () => {
         text: "User logged out successfully!",
         icon: "success",
       });
-      <Navigate/> 
+      <Navigate to={"/auth/login"}/> 
     } catch (error) {
       console.error("Logout error:", error);
       Swal.fire({

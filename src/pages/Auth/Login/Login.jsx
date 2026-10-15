@@ -12,7 +12,7 @@ import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 const Login = () => {
   const location = useLocation();
-  // console.log(location);
+   
   const navigate = useNavigate();
   const from = location?.state?.from?.pathname || '/';
   const {signInUser} = useAuth();
@@ -97,8 +97,8 @@ const Login = () => {
                   />
                   <button type="button"  onClick={handleValidateCaptcha} className="btn btn-outline btn-accent btn-xs  py-1">Validate</button>
                 </div>
-                {/* To Do : set disable login button */}
-                <button   type="submit" className="btn btn-neutral mt-4 bg-secondary text-white disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed border-none">
+               
+                <button disabled={disabled}  type="submit" className="btn btn-neutral mt-4 bg-secondary text-white disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed border-none">
                   Login
                 </button>
                 <p className="text-secondary text-center">New here? <Link  state={ {from : location.state?.from} } to={"/auth/register"} className="font-semibold hover:link"> Create a New Account</Link> </p>
