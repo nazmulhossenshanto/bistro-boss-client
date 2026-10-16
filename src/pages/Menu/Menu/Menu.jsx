@@ -23,8 +23,7 @@ const Menu = () => {
     <div>
          <Helmet>
         <title>Bistro Boss | Menu</title>
-      </Helmet>
-        
+      </Helmet> 
         <Cover image={menuImg} title={"Our menu"}></Cover>
         {/* Today's offer */}
         <SectionTitle subHeading={"Don't miss"} heading={"Today's Offer"}></SectionTitle>

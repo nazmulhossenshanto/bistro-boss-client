@@ -5,9 +5,11 @@ import useCart from "../../../hooks/useCart";
 import SectionTitle from "../../../SectionTitle/SectionTitle";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { Link } from "react-router";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
+  const totalPrice = cart.reduce((total, item)=> total + item.price, 0);
   const axiosSecure = useAxiosSecure();
   const handleDeleteItem = (id)=>{
        
@@ -50,9 +52,15 @@ const Cart = () => {
       <div className="mx-auto mt-10 w-full max-w-5xl rounded-lg bg-base-100 p-4 md:p-6 ">
 
         {/* Total items */}
-        <h3 className="mb-5 text-left text-lg font-bold">
+        <div className="flex justify-between items-center">
+          <h3 className="mb-5 text-left text-lg font-bold">
           TOTAL ITEMS: {cart.length}
         </h3>
+          <h3 className="mb-5 text-left text-lg font-bold">
+          TOTAL Price: ${totalPrice}
+        </h3>
+        <Link to="/dashboard/payment"><button className="btn btn-primary bg-blue-600 text-white">Pay</button></Link>
+        </div>
 
         {/* Table */}
         <div className="overflow-x-auto">

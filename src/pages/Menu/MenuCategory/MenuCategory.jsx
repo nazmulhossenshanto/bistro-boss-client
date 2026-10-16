@@ -10,7 +10,7 @@ const MenuCategory = ({ categoryMenu, route }) => {
         <MenuItem key={item._id} item={item}></MenuItem>
       ))} 
     </div>
-    <Link to={`/order/${route}`}> <button className="btn btn-outline     border-0 border-b-4 border-b-gray-400 mt-4">Order Your Favourite Food</button></Link>
+    <Link to={`/order/${route}`}> <button className="btn btn-outline    border-0 border-b-4 border-b-gray-400 mt-4 hover:bg-secondary">Order Your Favourite Food</button></Link>
     </div>
   );
 };
